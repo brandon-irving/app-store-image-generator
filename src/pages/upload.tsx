@@ -54,7 +54,8 @@ const Upload = () => {
     };
 
     const inputRef = useRef<HTMLInputElement>(null);
-    const focusInput = () => {
+    const focusInput = (e: any) => {
+        e.stopPropagation()
         inputRef.current?.click();
     };
 
