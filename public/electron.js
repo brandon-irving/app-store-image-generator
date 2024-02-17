@@ -7,6 +7,7 @@ const { showNotification } = require("./utils/showNotification");
 const AutoLaunch = require("auto-launch");
 const remote = require("@electron/remote/main");
 const config = require("./utils/config");
+const { handleImageResizeAndZip } = require("../src/helpers/script");
 
 if (config.isDev) require("electron-reloader")(module);
 
@@ -54,3 +55,11 @@ autoUpdater.on("update-downloaded", () => {
 ipcMain.on("restart_app", () => {
 	autoUpdater.quitAndInstall();
 });
+
+ipcMain.handle(
+	"resize-and-zip-images",
+	async (event, images, includeIos, includeAndroid) => {
+		return handleImageResizeAndZip(images, includeIos, includeAndroid);
+	},
+);
+

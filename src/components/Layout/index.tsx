@@ -31,7 +31,7 @@ export const Layout: FC<ILayout> = ({ children }) => {
 	return (
 		<>
 			<Titlebar />
-			<div className="select-none">{children}</div>
+			<div className="h-screen bg-black text-white flex items-center">{children}</div>
 		</>
 	);
 };
